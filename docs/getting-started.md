@@ -3,15 +3,16 @@
 ## Installation
 
 ```bash
-npm install zod zod-env
+npm install zod
+npm install github:flyingsquirrel0419/zenv
 ```
 
-`dotenv` is bundled as a dependency, so you do not need to install it separately.
+`zenv` is not published under the unscoped npm name yet, so this example installs directly from GitHub. `dotenv` is bundled as a dependency, so you do not need to install it separately.
 
 ## Basic Usage
 
 ```ts
-import { createEnv } from 'zod-env';
+import { createEnv } from 'zenv';
 import { z } from 'zod';
 
 export const env = createEnv({
@@ -28,7 +29,7 @@ export const env = createEnv({
 ## Next.js
 
 ```ts
-import { createNextEnv } from 'zod-env/nextjs';
+import { createNextEnv } from 'zenv/nextjs';
 import { z } from 'zod';
 
 export const env = createNextEnv({
@@ -47,7 +48,7 @@ If you want a client-only type, create a separate browser-safe env module with `
 ## Vite
 
 ```ts
-import { createViteEnv } from 'zod-env/vite';
+import { createViteEnv } from 'zenv/vite';
 import { z } from 'zod';
 
 export const env = createViteEnv({
@@ -63,7 +64,7 @@ export const env = createViteEnv({
 
 ```ts
 import { Inject, Injectable, Module } from '@nestjs/common';
-import { createNestEnvModule, createNestEnvToken } from 'zod-env/nestjs';
+import { createNestEnvModule, createNestEnvToken } from 'zenv/nestjs';
 import { z } from 'zod';
 
 type AppEnv = {
@@ -94,7 +95,7 @@ export class AppService {
 ## CI Validation
 
 ```bash
-npx zod-env validate
+npx zenv validate
 ```
 
 ## Validation Behavior

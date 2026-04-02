@@ -1,22 +1,22 @@
 {
-  "name": "zod-env",
+  "name": "zenv",
   "version": "0.1.1",
   "description": "Validate environment variables with Zod and human-friendly runtime errors.",
   "license": "MIT",
   "type": "module",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/flyingsquirrel0419/zod-env.git"
+    "url": "git+https://github.com/flyingsquirrel0419/zenv.git"
   },
-  "homepage": "https://github.com/flyingsquirrel0419/zod-env#readme",
+  "homepage": "https://github.com/flyingsquirrel0419/zenv#readme",
   "bugs": {
-    "url": "https://github.com/flyingsquirrel0419/zod-env/issues"
+    "url": "https://github.com/flyingsquirrel0419/zenv/issues"
   },
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "zod-env": "./bin/zod-env.mjs"
+    "zenv": "./bin/zenv.mjs"
   },
   "exports": {
     ".": {

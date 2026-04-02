@@ -183,7 +183,7 @@ describe('createEnv', () => {
   });
 
   it('loads dotenv values when requested against process.env', async () => {
-    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zod-env-'));
+    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zenv-'));
     const dotenvPath = path.join(tempDir, '.env');
     const key = 'TEST_DOTENV_URL';
 
@@ -206,7 +206,7 @@ describe('createEnv', () => {
   });
 
   it('does not load dotenv into a custom runtime env object', async () => {
-    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zod-env-'));
+    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zenv-'));
     const dotenvPath = path.join(tempDir, '.env');
     const key = 'TEST_CUSTOM_RUNTIME';
 
@@ -261,7 +261,7 @@ describe('createEnv', () => {
   });
 
   it('supports dotenv:true shorthand', async () => {
-    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zod-env-'));
+    const tempDir = await mkdtemp(path.join(os.tmpdir(), 'zenv-'));
     const previousCwd = process.cwd();
     const key = 'TEST_DOTENV_TRUE';
 

@@ -1,4 +1,4 @@
-# zod-env
+# zenv
 
 **Validate your environment variables with Zod. Break loudly at startup, not silently at runtime.**
 
@@ -17,9 +17,7 @@
 Fix the above variables in your .env file and restart the server.
 ```
 
-[![npm](https://img.shields.io/npm/v/zod-env)](https://www.npmjs.com/package/zod-env)
-[![npm downloads](https://img.shields.io/npm/dw/zod-env)](https://www.npmjs.com/package/zod-env)
-[![CI](https://github.com/flyingsquirrel0419/zod-env/actions/workflows/ci.yml/badge.svg)](https://github.com/flyingsquirrel0419/zod-env/actions)
+[![CI](https://github.com/flyingsquirrel0419/zenv/actions/workflows/ci.yml/badge.svg)](https://github.com/flyingsquirrel0419/zenv/actions)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](./LICENSE)
 
 ---
@@ -30,7 +28,7 @@ You're already using Zod for everything else. Your environment variables shouldn
 
 `dotenv` gives you strings with zero type safety. `envalid` has its own schema DSL that doesn't compose with anything. `t3-env` is close, but error messages are sparse and it requires extra wiring.
 
-`zod-env` lets you define your environment schema once with Zod, get **full TypeScript inference** across your entire codebase, and see **human-readable errors** that tell you exactly what's wrong and what to fix — before your server ever starts.
+`zenv` lets you define your environment schema once with Zod, get **full TypeScript inference** across your entire codebase, and see **human-readable errors** that tell you exactly what's wrong and what to fix — before your server ever starts.
 
 ---
 
@@ -43,7 +41,7 @@ You're already using Zod for everything else. Your environment variables shouldn
 - **Cross-field refinements** — validate relationships between variables
 - **`dotenv` auto-loading** — reads `.env` automatically in Node.js
 - **Framework adapters** — Next.js, Vite, NestJS, plain Node.js
-- **`zod-env validate` CLI** — validate in CI before deploying
+- **`zenv validate` CLI** — validate in CI before deploying
 - **Escape hatches** — `skipValidation`, `onValidationError`, `exitOnValidationError`
 
 ---
@@ -51,10 +49,11 @@ You're already using Zod for everything else. Your environment variables shouldn
 ## Install
 
 ```bash
-npm install zod-env zod
+npm install zod
+npm install github:flyingsquirrel0419/zenv
 ```
 
-> `dotenv` is included. No separate install needed.
+> `zenv` is not published under the unscoped npm name yet, so the install example uses the GitHub source directly. `dotenv` is included. No separate install needed.
 
 ---
 
@@ -62,7 +61,7 @@ npm install zod-env zod
 
 ```ts
 // env.ts
-import { createEnv } from 'zod-env';
+import { createEnv } from 'zenv';
 import { z } from 'zod';
 
 export const env = createEnv({
@@ -92,7 +91,7 @@ env.REDIS_URL     // string | undefined
 env.NODE_ENV      // "development" | "production" | "test"
 ```
 
-If any variable is missing or invalid, `zod-env` throws with a detailed error message before your server boots. No more `Cannot read properties of undefined` buried somewhere deep in your logs.
+If any variable is missing or invalid, `zenv` throws with a detailed error message before your server boots. No more `Cannot read properties of undefined` buried somewhere deep in your logs.
 
 ---
 
@@ -101,7 +100,7 @@ If any variable is missing or invalid, `zod-env` throws with a detailed error me
 ### Next.js
 
 ```ts
-import { createNextEnv } from 'zod-env/nextjs';
+import { createNextEnv } from 'zenv/nextjs';
 import { z } from 'zod';
 
 export const env = createNextEnv({
@@ -123,7 +122,7 @@ If you create a client-only env with `isServer: false`, server keys disappear fr
 ### Vite
 
 ```ts
-import { createViteEnv } from 'zod-env/vite';
+import { createViteEnv } from 'zenv/vite';
 import { z } from 'zod';
 
 export const env = createViteEnv({
@@ -140,7 +139,7 @@ export const env = createViteEnv({
 
 ```ts
 import { Inject, Injectable, Module } from '@nestjs/common';
-import { createNestEnvModule, createNestEnvToken } from 'zod-env/nestjs';
+import { createNestEnvModule, createNestEnvToken } from 'zenv/nestjs';
 import { z } from 'zod';
 
 type AppEnv = {
@@ -173,7 +172,7 @@ export class AppService {
 ### Plain Node.js
 
 ```ts
-import { createNodeEnv } from 'zod-env/node';
+import { createNodeEnv } from 'zenv/node';
 import { z } from 'zod';
 
 export const env = createNodeEnv({
@@ -277,15 +276,15 @@ export const env = createEnv({
 Validate your environment in CI before it reaches production:
 
 ```bash
-npx zod-env validate
+npx zenv validate
 # or with an explicit config path
-npx zod-env validate ./config/env.config.mjs
+npx zenv validate ./config/env.config.mjs
 ```
 
 Create a config file that exports your `createEnv` options:
 
 ```js
-// zod-env.config.mjs
+// zenv.config.mjs
 import { z } from 'zod';
 
 export default {
@@ -300,14 +299,14 @@ Add it to your CI pipeline:
 
 ```yaml
 - name: Validate environment
-  run: npx zod-env validate
+  run: npx zenv validate
 ```
 
 ---
 
 ## How It Compares
 
-|  | dotenv | envalid | t3-env | **zod-env** |
+|  | dotenv | envalid | t3-env | **zenv** |
 |--|--------|---------|--------|-------------|
 | TypeScript inference | ❌ | △ | ✅ | ✅ |
 | Zod v3 | ❌ | ❌ | ✅ | ✅ |

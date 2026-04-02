@@ -8,7 +8,7 @@ export const env = createNextEnv({
   },
   client: {
     NEXT_PUBLIC_SITE_URL: z.string().url(),
-    NEXT_PUBLIC_APP_NAME: z.string().default('zod-env demo'),
+    NEXT_PUBLIC_APP_NAME: z.string().default('zenv demo'),
   },
   runtimeEnv: process.env,
 });

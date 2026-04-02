@@ -10,9 +10,9 @@ import type { CreateEnvOptions, EnvSchema } from './types';
 type Io = Pick<typeof console, 'error' | 'log'>;
 
 const DEFAULT_CONFIG_FILES = [
-  'zod-env.config.mjs',
-  'zod-env.config.js',
-  'zod-env.config.cjs',
+  'zenv.config.mjs',
+  'zenv.config.js',
+  'zenv.config.cjs',
 ];
 
 interface CliModuleExport {
@@ -38,7 +38,7 @@ export async function runCli(argv = process.argv.slice(2), io: Io = console): Pr
   const configPath = configPathArg ? path.resolve(configPathArg) : await findConfigPath(process.cwd());
 
   if (!configPath) {
-    io.error('No config file found. Pass a path or create zod-env.config.mjs/js/cjs.');
+    io.error('No config file found. Pass a path or create zenv.config.mjs/js/cjs.');
     return 1;
   }
 
@@ -67,7 +67,7 @@ export async function runCli(argv = process.argv.slice(2), io: Io = console): Pr
 export function getHelpText(): string {
   return [
     'Usage:',
-    '  zod-env validate [config-path]',
+    '  zenv validate [config-path]',
     '',
     'Config module exports:',
     '  - default export with createEnv options',
