@@ -50,10 +50,10 @@ You're already using Zod for everything else. Your environment variables shouldn
 
 ```bash
 npm install zod
-npm install github:flyingsquirrel0419/zenv
+npm install @flyingsquirrel0419/zenv
 ```
 
-> `zenv` is not published under the unscoped npm name yet, so the install example uses the GitHub source directly. `dotenv` is included. No separate install needed.
+> `dotenv` is included. No separate install needed.
 
 ---
 
@@ -61,7 +61,7 @@ npm install github:flyingsquirrel0419/zenv
 
 ```ts
 // env.ts
-import { createEnv } from 'zenv';
+import { createEnv } from '@flyingsquirrel0419/zenv';
 import { z } from 'zod';
 
 export const env = createEnv({
@@ -100,7 +100,7 @@ If any variable is missing or invalid, `zenv` throws with a detailed error messa
 ### Next.js
 
 ```ts
-import { createNextEnv } from 'zenv/nextjs';
+import { createNextEnv } from '@flyingsquirrel0419/zenv/nextjs';
 import { z } from 'zod';
 
 export const env = createNextEnv({
@@ -122,7 +122,7 @@ If you create a client-only env with `isServer: false`, server keys disappear fr
 ### Vite
 
 ```ts
-import { createViteEnv } from 'zenv/vite';
+import { createViteEnv } from '@flyingsquirrel0419/zenv/vite';
 import { z } from 'zod';
 
 export const env = createViteEnv({
@@ -139,7 +139,7 @@ export const env = createViteEnv({
 
 ```ts
 import { Inject, Injectable, Module } from '@nestjs/common';
-import { createNestEnvModule, createNestEnvToken } from 'zenv/nestjs';
+import { createNestEnvModule, createNestEnvToken } from '@flyingsquirrel0419/zenv/nestjs';
 import { z } from 'zod';
 
 type AppEnv = {
@@ -172,7 +172,7 @@ export class AppService {
 ### Plain Node.js
 
 ```ts
-import { createNodeEnv } from 'zenv/node';
+import { createNodeEnv } from '@flyingsquirrel0419/zenv/node';
 import { z } from 'zod';
 
 export const env = createNodeEnv({

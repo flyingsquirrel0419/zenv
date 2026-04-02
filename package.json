@@ -1,5 +1,5 @@
 {
-  "name": "zenv",
+  "name": "@flyingsquirrel0419/zenv",
   "version": "0.1.1",
   "description": "Validate environment variables with Zod and human-friendly runtime errors.",
   "license": "MIT",

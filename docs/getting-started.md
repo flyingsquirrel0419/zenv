@@ -4,15 +4,15 @@
 
 ```bash
 npm install zod
-npm install github:flyingsquirrel0419/zenv
+npm install @flyingsquirrel0419/zenv
 ```
 
-`zenv` is not published under the unscoped npm name yet, so this example installs directly from GitHub. `dotenv` is bundled as a dependency, so you do not need to install it separately.
+`dotenv` is bundled as a dependency, so you do not need to install it separately.
 
 ## Basic Usage
 
 ```ts
-import { createEnv } from 'zenv';
+import { createEnv } from '@flyingsquirrel0419/zenv';
 import { z } from 'zod';
 
 export const env = createEnv({
@@ -29,7 +29,7 @@ export const env = createEnv({
 ## Next.js
 
 ```ts
-import { createNextEnv } from 'zenv/nextjs';
+import { createNextEnv } from '@flyingsquirrel0419/zenv/nextjs';
 import { z } from 'zod';
 
 export const env = createNextEnv({
@@ -48,7 +48,7 @@ If you want a client-only type, create a separate browser-safe env module with `
 ## Vite
 
 ```ts
-import { createViteEnv } from 'zenv/vite';
+import { createViteEnv } from '@flyingsquirrel0419/zenv/vite';
 import { z } from 'zod';
 
 export const env = createViteEnv({
@@ -64,7 +64,7 @@ export const env = createViteEnv({
 
 ```ts
 import { Inject, Injectable, Module } from '@nestjs/common';
-import { createNestEnvModule, createNestEnvToken } from 'zenv/nestjs';
+import { createNestEnvModule, createNestEnvToken } from '@flyingsquirrel0419/zenv/nestjs';
 import { z } from 'zod';
 
 type AppEnv = {
