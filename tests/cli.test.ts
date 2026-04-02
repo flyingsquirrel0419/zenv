@@ -1,16 +1,13 @@
 import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
+import os from 'node:os';
 import path from 'node:path';
 
-import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { runCli } from '../src/cli';
 
 afterEach(() => {
   vi.restoreAllMocks();
-});
-
-beforeAll(async () => {
-  await mkdir('/root/zod-env/.tmp', { recursive: true });
 });
 
 describe('runCli', () => {
@@ -36,7 +33,7 @@ describe('runCli', () => {
   });
 
   it('loads the default config file and validates it', async () => {
-    const tempRoot = await mkdtemp(path.join('/root/zod-env/.tmp', 'zenv-cli-'));
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'zenv-cli-'));
     const workingDir = path.join(tempRoot, 'workspace');
     const configPath = path.join(workingDir, 'zenv.config.mjs');
     const log = vi.fn();
@@ -71,7 +68,7 @@ describe('runCli', () => {
   });
 
   it('returns an error when no config file can be found', async () => {
-    const tempRoot = await mkdtemp(path.join('/root/zod-env/.tmp', 'zenv-empty-'));
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'zenv-empty-'));
     const log = vi.fn();
     const error = vi.fn();
     const previousCwd = process.cwd();
@@ -88,7 +85,7 @@ describe('runCli', () => {
   });
 
   it('supports named config exports and async factories', async () => {
-    const tempRoot = await mkdtemp(path.join('/root/zod-env/.tmp', 'zenv-config-'));
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'zenv-config-'));
     const configPath = path.join(tempRoot, 'named-config.mjs');
     const log = vi.fn();
     const error = vi.fn();
@@ -113,7 +110,7 @@ describe('runCli', () => {
   });
 
   it('returns an error when the config module does not export an options object', async () => {
-    const tempRoot = await mkdtemp(path.join('/root/zod-env/.tmp', 'zenv-invalid-'));
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'zenv-invalid-'));
     const configPath = path.join(tempRoot, 'invalid-config.mjs');
     const log = vi.fn();
     const error = vi.fn();
@@ -127,7 +124,7 @@ describe('runCli', () => {
   });
 
   it('supports createEnvOptions exports and falls back to process.env', async () => {
-    const tempRoot = await mkdtemp(path.join('/root/zod-env/.tmp', 'zenv-export-'));
+    const tempRoot = await mkdtemp(path.join(os.tmpdir(), 'zenv-export-'));
     const configPath = path.join(tempRoot, 'exported-config.mjs');
     const log = vi.fn();
     const error = vi.fn();
