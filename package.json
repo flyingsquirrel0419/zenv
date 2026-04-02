@@ -16,7 +16,7 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "bin": {
-    "zenv": "./bin/zenv.mjs"
+    "zenv": "bin/zenv.mjs"
   },
   "exports": {
     ".": {
